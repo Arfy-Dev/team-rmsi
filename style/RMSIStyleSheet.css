@@ -1,0 +1,3985 @@
+/*
+   Project: User Interface Open Journal System (OJS) Jurnal Ilmiah Rekayasa dan Manajemen Sistem Informasi
+   Created by Ahmad Dhani on March 30, 2023
+   Last Modified on January 12, 2024
+   Version 1.0.7
+   Repository: [GitHub](https://github.com/Arfy-Dev/team-rmsi)
+   Development Team: Ahmad Dhani, Mahfuzoh, Saide
+   Contact: 12150311729@students.uin-suska.ac.id
+*/
+
+@font-face {
+  font-family: "Calibri-dw";
+  src: url("https://www.deliverlean.com/fonts/calibri/calibri.woff");
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+* {
+  font-family: "Calibri-dw", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#headerTitle,
+#navbar {
+  width: 1020px;
+}
+
+#header {
+  background-color: transparent;
+  padding-bottom: 40px;
+}
+
+#navbar {
+  background-image: linear-gradient(to right, rgb(0, 135, 255), #fff);
+  height: 2em;
+  border: 0;
+  margin-bottom: 10px;
+  margin-left: 0;
+  padding: 0;
+  text-align: left;
+}
+
+#navbar ul {
+  padding-left: 10px;
+}
+
+#navbar ul li {
+  float: left;
+  padding: 0;
+}
+
+#navbar a,
+#navbar a:link,
+#navbar a:visited {
+  font-family: "Calibri-dw", sans-serif;
+  color: #000;
+  display: inline-block;
+  font-size: .6em;
+  font-weight: 700;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+/* #navbar ul.menu li a:hover {
+  text-decoration: none ;
+  background: #0e0e9c ;
+  text-shadow: 1px 1px #000 ;
+  color: white ;
+  transform: scale(1.1) ;
+  transition: .2s ease-in-out ;
+} */
+
+
+#navbar ul.menu li {
+  --color: #0008C1;
+  font-family: inherit;
+  height: 2em;
+  line-height: 0.5em;
+  position: relative;
+  overflow: hidden;
+  transition: color .5s;
+  z-index: 1;
+  font-size: 1em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+#navbar ul.menu li:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color) !important;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+#navbar ul.menu li a:hover {
+  text-shadow: unset;
+  background: unset;
+  color: #fff;
+}
+
+#navbar ul.menu li:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+}
+
+#navbar ul.menu li:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+#navbar ul.menu li:active:before {
+  /* background: #3a0ca3; */
+  transition: background 0s;
+}
+
+/* #navbar a:active {
+  font-weight: 900 ;
+  transition: .2s ease-in-out ;
+} */
+
+#sidebar input.textField,
+#sidebar select.selectMenu,
+#sidebar input.button,
+input[type="button"],
+input[type="submit"],
+table.announcementsMore tr td a,
+table.tocArticle .tocGalleys .file {
+  font-size: .9em !important;
+}
+
+#onlineSubmissions p,
+table.announcements tr.intro td.intro:not(tr.intro),
+#content #registerForm p:nth-child(1),
+#content #registerForm p:nth-child(2),
+#content p span.instruct {
+  width: 94.5%;
+  padding: 1.3em;
+  background: #e3f0f4;
+  border-left: 5px solid #f6b62c;
+  line-height: 2.2em;
+  margin-bottom: 1.5em;
+}
+
+#content p span.instruct {
+  display: inline-block;
+}
+
+table.announcements tr.intro td.intro:not(tr.intro) {
+  width: 93%;
+}
+
+#onlineSubmissions p a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  transition: .5s ease-in-out;
+}
+
+#onlineSubmissions p a:hover {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#authorGuidelines ol li,
+#submissionPreparationChecklist ol li,
+#content #results ul li {
+  padding: .2em 1em;
+  text-align: justify;
+}
+
+#onlineSubmissions .separator,
+#authorGuidelines .separator,
+#submissionPreparationChecklist .separator,
+#copyrightNotice .separator,
+#privacyStatement .separator {
+  display: none;
+}
+
+.separator {
+  display: none;
+}
+
+#body, #header, #main, #navbar, #sidebar {
+  display: inline-block !important;
+}
+
+#header, #main, #navbar, ul.sidemenu li:before {
+  display: none;
+}
+
+#leftSidebar div.block span.blockTitle, #rightSidebar div.block span.blockTitle, #sidebarDevelopedBy.block, #sidebarHelp.block {
+  background-image: linear-gradient(to right, #005b9a, #0091c5, #00bcd4);
+  font-family: "Calibri-dw", sans-serif;
+}
+
+#body, #main, body {
+  background-color: #fff;
+}
+
+#additionalHomeContent, #announcementsHome, #navbar {
+  clear: both;
+}
+
+#container, #headerTitle {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+#announcements,
+#container {
+  width: auto;
+}
+
+.announcements tr.description td.description p {
+  font-size: 1.1em;
+}
+
+table.announcements tr.intro td.intro:not(tr.intro) {
+  line-height: 1.5em;
+}
+
+table.announcements tr.intro, table.announcements tr.intro td.intro, table.announcements tr.description td.description p {
+  width: 118%;
+  text-align: justify;
+}
+
+table.announcementsMore tr td a {
+  width: 10px;
+}
+
+table.announcementsMore tr td a {
+  width: 2.3em;
+  height: 1.4em;
+  line-height: 1.4em;
+  border: 2px solid red;
+  display: block;
+  text-align: center;
+  overflow: hidden;
+}
+
+#body, #container, #headerTitle, #headerTitle img {
+  display: inline-block;
+}
+
+body {
+  color: #333;
+  font-family: "Calibri-dw", sans-serif;
+  /* font-size: 1.28em; */
+  font-size: 1.15em;
+}
+
+a:active,
+a:link,
+a:visited {
+  color: #0074D9;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+a:hover {
+  background-color: unset;
+  color: #1539C0;
+  transition: .2s ease-in-out;
+}
+
+#container {
+  min-width: 730px !important;
+  text-align: center;
+  background-image: url(https://s.id/1Cw9f);
+}
+
+#header h1 {
+  color: #111;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 120px;
+  padding: 0;
+  text-shadow: 1px 1px #fff;
+}
+
+#headerTitle img {
+  float: center;
+  margin-right: 20px;
+  width: 100%;
+  height: 180px;
+}
+
+#body {
+  margin: -40px auto 0;
+  width: 1020px !important;
+  padding-bottom: 20px;
+  box-shadow: -10px 10px 50px -8px grey, 10px 10px 50px -8px grey;
+  background-color: #fff;
+  display: inline-block;
+  height: auto;
+}
+
+#main {
+  float: left;
+  margin-left: 0;
+  margin-right: 0 !important;
+  overflow: visible !important;
+  padding: 0;
+  position: relative;
+  width: 805px;
+}
+
+#main h3 {
+  margin: 10px 1em 0.5em 0em;
+  padding-top: 0em;
+  font-weight: normal;
+
+}
+
+#content h1, #content h2, #content h3, #content h4, #main>h2, #main h3 {
+  color: #000000;
+  font-family: "Calibri-dw", sans-serif;
+  font-weight: 700;
+}
+
+#content {
+  border-top: 0 dotted #000;
+}
+
+#content #journal {
+  border-top: 0 dotted #000;
+}
+
+
+#content {
+  text-align: justify;
+  color: black;
+}
+
+#content p {
+  line-height: 1.9em;
+  text-align: justify;
+}
+
+#content #contact p {
+  margin-left: 1.5em;
+  font-size: unset;
+}
+
+#emptyFilters .extrasContainer p {
+  font-size: unset;
+}
+
+#content li::marker {
+  content: "\2BC8";
+  color: #000;
+}
+
+/* Start Editorial Team Pages */
+#content #displayMembership h4,
+#content #group h4 {
+  font-size: 3.5em;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-top: -28px;
+}
+
+#content #group h4 {
+  margin-top: 1px;
+  margin-bottom: -10px;
+}
+
+#content #displayMembership h4::after {
+  content: "background";
+  font-size: 0.6em;
+  position: absolute;
+  top: 96px;
+  left: 20px;
+  color: white;
+  font-weight: 700;
+  height: 30px;
+  background-color: white;
+}
+
+#content #displayMembership .member,
+#content #contact div,
+#content #group ol.editorialTeam .member {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+}
+
+#content #displayMembership .member::before,
+#content #contact div::before,
+#content #group ol.editorialTeam .member::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #displayMembership .member a:hover,
+#content #group a:hover,
+#content #submissionPreparationChecklist ol li a:hover,
+#content #authorGuidelines ol li a:hover,
+#content #copyrightNotice a:hover,
+#content #publisher p:hover,
+#content #peerReviewProcess ol li a:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
+  color: #4499E3 !important
+}
+
+/* End Editorial Team Pages */
+
+/* Start Editorial Policies Pages */
+#content #focusAndScope h3,
+#content #sectionPolicies h3,
+#content #peerReviewProcess h3,
+#content #publicationFrequency h3,
+#content #openAccessPolicy h3,
+#content #authorGuidelines h3,
+#content #onlineSubmissions h3,
+#content #submissionPreparationChecklist h3,
+#content #copyrightNotice h3,
+#content #privacyStatement h3,
+#content #publisher h3 {
+  font-size: 3.5em;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-top: -28px;
+}
+
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #peerReviewProcess p {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem !important;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+}
+
+#content #peerReviewProcess ol li:before,
+#content #publicationFrequency p:before,
+#content #openAccessPolicy p:before,
+#content #peerReviewProcess p:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #peerReviewProcess p {
+  margin-bottom: 1.5em !important;
+  margin-top: -8px;
+}
+
+#content #peerReviewProcess,
+#content #publicationFrequency {
+  margin-bottom: 3em;
+}
+
+#content #peerReviewProcess p:nth-child(2),
+#content #peerReviewProcess p:nth-last-child(2) {
+  display: none
+}
+
+#content #peerReviewProcess ol {
+  padding: unset;
+  margin-top: -20px;
+}
+
+#peerReviewProcess .reviewers {
+  margin-top: 5px !important;
+}
+
+#peerReviewProcess p:nth-child(3),
+#focusAndScope table {
+  margin-top: -25px !important;
+}
+
+#sectionPolicies h3 {
+  margin-bottom: 5px !important;
+}
+
+#peerReviewProcess {
+  margin-top: 4em !important;
+}
+
+#content ul li#linkFocusScopeDesc,
+#content ul li#linkEditorialPolicies,
+#content ul li#linkReviewPolicy,
+#content ul li#linkOpenAccessPolicy,
+#content ul li#linkPubFreqPolicy {
+  display: none
+}
+
+/* End Editorial Policies Pages */
+
+#content #group ol.editorialTeam .member li::marker {
+  content: "";
+}
+
+#content #contact div,
+#content #group ol.editorialTeam .member {
+  margin-bottom: 1.5em;
+}
+
+#content ul li {
+  min-height: 2em;
+  margin-bottom: .5em;
+  padding: .2em .4em;
+}
+
+#content ul li {
+  background-image: none;
+}
+
+#content ul li a,
+#content ol li h4 a {
+  padding: .5em .5em .5em .5em;
+  border-radius: .5em .5em .5em .5em;
+  color: black;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  transition: .2s ease-in-out;
+}
+
+#content ul.steplist li a:hover {
+  background-color: unset;
+  color: white;
+}
+
+#content ul.menu,
+#content ul.steplist {
+  display: inline;
+  line-height: 2.5em;
+}
+
+#submissionEventLog table.listing tr td a.action,
+#editors table.listing tr td a.action,
+#submissionEmailLog table.listing tr td a.action,
+#submissionNotes table.listing tr td a.action,
+#eventLogEntries table.listing tr td a.action,
+#emailLogEntries table.listing tr td a.action,
+#submissionNotes table.listing tr td a.action {
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 3px 5px;
+  font-weight: bold;
+  font-size: .8em;
+  border: 2px solid #007bff;
+  transition: 0.5s ease-in-out;
+}
+
+#submissionEventLog table.listing tr td a.action:hover,
+#editors table.listing tr td a.action:hover,
+#submissionEmailLog table.listing tr td a.action:hover,
+#submissionNotes table.listing tr td a.action:hover,
+#eventLogEntries table.listing tr td a.action:hover,
+#emailLogEntries table.listing tr td a.action:hover,
+#submissionNotes table.listing tr td a.action:hover {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  color: rgb(0, 135, 255);
+  transition: 0.5s ease-in-out;
+}
+
+#content ul.menu li a:hover,
+#content ul.steplist li a:hover {
+  color: #fff;
+  margin: unset;
+  transition: .2s ease-in-out;
+}
+
+/* #content ul.steplist li {
+  background-color: red;
+  padding: 5px 10px;
+} */
+
+#content li h4, #content li p {
+  margin-left: 1em;
+  line-height: 1.5em;
+  text-align: justify;
+  color: black;
+}
+
+#content li p {
+  margin-left: 1.5em;
+}
+
+#content li h4 a {
+  font-size: .7em;
+  margin-left: -1em;
+  font-weight: lighter;
+}
+
+#content li h4 a:hover {
+  margin-left: 0em;
+  color: FFF;
+  background-color: #3B71CA;
+  font-weight: lighter
+}
+
+#content li h4 a {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#content ul.menu li.current,
+#content ul.menu li:hover,
+#content ul.steplist li.current,
+#content ul.steplist li:hover {
+  background-image: linear-gradient(to bottom, #ec790f 0, #f28c31 100%);
+  background-repeat: repeat-x;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: .2s ease-in-out;
+}
+
+#content ul.menu li,
+#content ul.steplist li {
+  background-image: linear-gradient(to bottom, #ecedf2 0, #f6f7fa 100%);
+  background-repeat: repeat-x;
+  border-radius: 3px;
+  padding: 5px 8px;
+  box-shadow: 0px 4px 10px rgba(27, 94, 154, 0.81);
+}
+
+#content #principalContact p br:nth-child(2) {
+  display: none;
+}
+
+#journalTitleAndLogo img,
+#pageHeaderTitle img {
+  width: 100%;
+}
+
+table.data {
+  line-height: 2em;
+}
+
+table.listing td.headseparator,
+table.listing td.separator,
+table.info td.separator,
+table.listing td.endseparator {
+  border-top: unset;
+  border-bottom: unset;
+  display: none;
+}
+
+table.listing tr.heading {
+  background-image: linear-gradient(to bottom, #5A9FDA, #54CFFF);
+}
+
+table.listing tr.heading td {
+  font-weight: bolder;
+  vertical-align: middle;
+}
+
+table.listing tr td,
+table.listing tr td img {
+  text-align: center;
+  padding: 1.5em 0em;
+  vertical-align: middle;
+}
+
+table.listing tr td a.icon img {
+  padding: unset;
+}
+
+#results table.listing tr:nth-child(3n+5) {
+  display: none;
+}
+
+table.listing tr:nth-child(2n+1):not(tr.heading, tr:nth-last-child(1)) {
+  background-color: #8fd0ff61;
+}
+
+table.listing tr {
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading):hover .file:hover,
+#results table.listing tr:hover td a.action:hover,
+#results table.listing tr:hover td:nth-last-child(1) a:hover {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(tr.heading, tr:nth-child(3n+5), tr:nth-last-child(1)):hover,
+#results table.listing tr:not(tr.heading, tr:nth-last-child(1)):hover,
+#users table.listing tr:not(.heading, tr:nth-last-child(1)):hover,
+#notifications table.notifications:nth-child(1n+1):hover {
+  background-color: #ff9b00ed;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(tr.heading, tr:nth-child(3n+5), tr:nth-last-child(1)):hover a,
+#results table.listing tr:not(tr.heading, tr:nth-last-child(1)):hover a,
+#notifications table.notifications:hover tr td.notificationFunction a:hover,
+#users table.listing tr td:nth-child(5) a:hover,
+#users table.listing tr.heading td a {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):hover .file,
+#results table.listing tr:not(.heading, tr:nth-last-child(1)):hover td a.action,
+#results table.listing tr:not(.heading, tr:nth-last-child(1)):hover td:nth-last-child(1) a,
+#users table.listing tr:not(.heading, tr:nth-last-child(1)):hover td:nth-child(5) a.action,
+#notifications table.notifications:hover tr td.notificationFunction a,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing .file,
+#results table.listing tr td a.action,
+#results table.listing tr td:nth-last-child(1) a,
+#notifications table.notifications tr td.notificationFunction a,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td strong,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td strong {
+  padding: .5em 1em;
+  border-radius: 8px;
+  margin-right: .4em;
+  font-weight: bolder;
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#submissions table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td strong {
+  margin-right: unset;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td a:hover,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a:hover {
+  background-color: #014b9b;
+  border: 2px solid #014b9b;
+  color: white;
+}
+
+#results table.listing tr.heading td:nth-child(1) {
+  width: 40%;
+}
+
+#results table.listing tr.heading td:nth-child(2) {
+  width: 60%;
+}
+
+#users table.listing tr td:nth-child(5) .action {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .4em .4em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  margin-right: .1em;
+  transition: .5s ease-in-out;
+}
+
+#submissions table.listing tr:nth-last-child(1) td a:nth-child(1),
+#submissions table.listing tr:nth-last-child(1) td a:nth-last-child(1) {
+  display: none;
+}
+
+#submissions table.listing tr td:nth-last-child(1) a {
+  margin-right: unset;
+}
+
+table.listing tr td.nowrap br,
+#content #articleAbstract br,
+#content #articleCitations br {
+  display: none;
+}
+
+#submissionPreparationChecklist,
+#authorGuidelines,
+#peerReviewProcess,
+#group,
+#displayMembership,
+#content #results ul li {
+  text-align: justify;
+  line-height: 2em;
+}
+
+#submissionPreparationChecklist ol li a,
+#authorGuidelines ol li a,
+#peerReviewProcess ol li a,
+#group ol li a {
+  color: #4e82a8;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0);
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  text-decoration: none;
+}
+
+#submissionPreparationChecklist ol li a:hover,
+#authorGuidelines ol li a:hover,
+#peerReviewProcess ol li a:hover,
+#group ol li a:hover {
+  margin: 0 0 0 0;
+  background-color: white;
+  color: #2168b5;
+  font-weight: lighter;
+}
+
+ul.sidemenu li a, ul.sidemenu li:first-child a {
+  border-top: 1px solid #FFF;
+}
+
+ul.sidemenu {
+  padding-left: 0 !important;
+  margin: -10px -10px 0;
+}
+
+ul.sidemenu li {
+  padding: 0;
+}
+
+ul.sidemenu li a {
+  background-color: #ffde59;
+  border-bottom: 3px solid #FFF;
+  color: #FFF;
+  display: block;
+  padding: .66em 10px .6em 13px;
+  text-decoration: none;
+}
+
+#leftSidebar {
+  display: none;
+  border-right: 1px solid #ccc;
+  float: left;
+  width: 0;
+}
+
+ul.sidemenu li:last-child a {
+  border-bottom: 0;
+}
+
+ul.sidemenu li a:hover {
+  background-color: #3a6d98;
+  text-decoration: underline;
+}
+
+#breadcrumb {
+  margin: 10px 0 0 20px;
+  padding: .4em 2em;
+  background-color: #8fd0ff61;
+  font-size: .5em;
+  border-radius: 2em;
+  font-weight: bolder;
+  width: 90%;
+  border-bottom: unset;
+}
+
+#breadcrumb a {
+  color: #000;
+  font-style: italic;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.2em;
+}
+
+#breadcrumb a:hover {
+  color: rgb(24, 166, 227);
+  transform: scale(2);
+}
+
+#content, #main>h2, #main>h3 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#cpr {
+  border: 0 #fff;
+}
+
+#leftSidebar, #rightSidebar {
+  font-size: .68em;
+  height: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  padding: 50px 10px 10px;
+}
+
+#rightSidebar {
+  border-left: 1px solid #ccc;
+  float: right;
+  width: 191px;
+  background-color: #ffffff;
+}
+
+#leftSidebar div.block, #rightSidebar div.block {
+  border: 0;
+  color: #000000;
+  padding: 0 0 10px;
+  margin-bottom: 10px;
+}
+
+#leftSidebar div.block span.blockTitle, #rightSidebar div.block span.blockTitle, #sidebarDevelopedBy.block, #sidebarHelp.block {
+  color: #000000;
+  display: block;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+  padding: 10px 10px !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+#announcementList {
+  margin-top: 20px !important;
+}
+
+#notifications table.notifications {
+  line-height: 3em;
+  padding: .5em 1em;
+}
+
+#notifications table.notifications:nth-child(2n+1) {
+  background-color: #8fd0ff61;
+}
+
+#notifications table.notifications tr td.notificationContent {
+  font-weight: bolder;
+}
+
+#notifications table.notifications tr td.notificationContent p {
+  font-weight: normal;
+  font-size: .85em;
+}
+
+#notifications table.notifications tr td.notificationFunction a {
+  font-size: .8em;
+}
+
+#customblock-Index-In a img,
+#customblock-Template p a img,
+#customblock-Acreditation p a img,
+#customblock-Visitors p a img {
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.9px);
+  -webkit-backdrop-filter: blur(8.9px);
+}
+
+#sidebarDevelopedBy.block a, #sidebarHelp.block a {
+  color: #222;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+#customblock-Journal-Information .menu-info {
+  background-image: linear-gradient(to bottom, #5A9FDA, #54CFFF);
+  border: solid 1px #eceff5;
+  padding: 9px;
+  margin: 0;
+  text-align: center;
+  line-height: 23px;
+  font-size: 1em;
+}
+
+#customblock-Journal-Information .menu-info a {
+  color: black;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+#customblock-Journal-Information .menu-info a:hover {
+  background-color: unset !important;
+  text-decoration: none;
+  font-size: 1.15em;
+  transition: .2s ease-in-out;
+}
+
+#content h4 a, input[type=button], input[type=submit], table.tocArticle a {
+  text-decoration: none;
+}
+
+.block p {
+  margin: 0 !important;
+}
+
+.block ul {
+  list-style: none;
+  padding-left: 1.2em;
+}
+
+.block li:before {
+  content: "\00BB";
+  display: block;
+  height: 0;
+  left: -1em;
+  position: relative;
+  width: 0;
+}
+
+.banner-img, .indexers a, .intro {
+  display: inline-block;
+}
+
+#sidebarFontSize.block {
+  padding-bottom: 35px !important;
+  display: none;
+}
+
+table.tocArticle {
+  font-weight: bolder;
+  padding: 1rem;
+  margin-bottom: 1.5em;
+  border-radius: 2rem 2rem 2rem 2rem;
+  box-shadow: .2rem .2rem .1rem #1e6292;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle:hover {
+  border-radius: 0rem 0rem 2rem 0rem;
+  background-color: #006eff85;
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle tr:hover .tocTitle a {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle td {
+  padding: 15px 20px;
+}
+
+table.tocArticle:hover a {
+  color: black;
+}
+
+table.tocArticle:nth-child(2n+1) tr {
+  background-color: unset;
+}
+
+table.tocArticle:nth-child(2n) tr {
+  background-color: unset;
+}
+
+.tocTitle {
+  font-weight: 700;
+}
+
+td.tocGalleys {
+  padding-right: 10px;
+}
+
+#content ul.menu {
+  margin: 0px;
+}
+
+#content ul.menu a {
+  color: black;
+}
+
+#content #submit {
+  display: inline-block;
+  margin-bottom: .1em;
+  margin-left: 1.9em;
+}
+
+#content #submit .selectMenu {
+  margin-bottom: 2%;
+}
+
+
+#content table tr td ul.plain li::marker {
+  content: unset;
+}
+
+#content table tr td ul.plain li a {
+  padding: unset;
+  border-radius: unset;
+  color: black;
+  box-shadow: unset;
+  transition: unset
+}
+
+#content table tr td ul.plain li a:hover {
+  background-color: unset;
+  color: white;
+  font-weight: unset;
+  transition: unset;
+  margin-left: unset;
+  transition: unset;
+}
+
+/* Start About Pages*/
+#content #aboutPeople ul,
+#content #aboutPolicies ul,
+#content #aboutSubmissions ul,
+#content #aboutOther ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -40px !important;
+}
+
+#content #aboutPeople ul li::marker,
+#content #aboutPolicies ul li::marker,
+#content #aboutSubmissions ul li::marker,
+#content #aboutOther ul li::marker {
+  content: "" !important;
+}
+
+#content #aboutPeople ul li a,
+#content #aboutPolicies ul li a,
+#content #aboutSubmissions ul li a,
+#content #aboutOther ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  width: 10em;
+  text-align: center;
+  margin-right: 20px;
+  background: rgba(31, 137, 214, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+#content #aboutPeople ul li a::before,
+#content #aboutPolicies ul li a::before,
+#content #aboutSubmissions ul li a::before,
+#content #aboutOther ul li a::before {
+  content: "";
+  position: absolute;
+  top: -35px;
+  right: -25px;
+  height: 50px;
+  width: 50px;
+  z-index: -1;
+  border-radius: 50%;
+  transition: .5s ease-in-out;
+}
+
+#content #aboutPeople ul li a:hover::before,
+#content #aboutPolicies ul li a:hover::before,
+#content #aboutSubmissions ul li a:hover::before,
+#content #aboutOther ul li a:hover::before {
+  background-color: red;
+  top: -30px;
+  right: -20px;
+  height: 200px;
+  width: 200px;
+  transition: .5s ease-in-out;
+}
+
+#content #aboutPeople ul li a:hover,
+#content #aboutPolicies ul li a:hover,
+#content #aboutSubmissions ul li a:hover,
+#content #aboutOther ul li a:hover {
+  color: white
+}
+
+#content #aboutPeople ul li:nth-child(1) a:before,
+#content #aboutPolicies ul li:nth-child(1) a:before,
+#content #aboutSubmissions ul li:nth-child(1) a:before,
+#content #aboutOther ul li:nth-child(1) a:before {
+  background-color: #03045E;
+}
+
+#content #aboutPeople ul li:nth-child(2) a:before,
+#content #aboutPolicies ul li:nth-child(2) a:before,
+#content #aboutSubmissions ul li:nth-child(2) a:before,
+#content #aboutOther ul li:nth-child(2) a:before {
+  background-color: #023E8A;
+}
+
+#content #aboutPeople ul li:nth-child(3) a:before,
+#content #aboutPolicies ul li:nth-child(3) a:before,
+#content #aboutSubmissions ul li:nth-child(3) a:before,
+#content #aboutOther ul li:nth-child(3) a:before {
+  background-color: #0077B6;
+}
+
+#content #aboutPeople ul li:nth-child(4) a:before,
+#content #aboutPolicies ul li:nth-child(4) a:before,
+#content #aboutSubmissions ul li:nth-child(4) a:before,
+#content #aboutOther ul li:nth-child(4) a:before {
+  background-color: #00B4D8;
+}
+
+#content #aboutPeople ul li:nth-child(5) a:before,
+#content #aboutPolicies ul li:nth-child(5) a:before,
+#content #aboutSubmissions ul li:nth-child(5) a:before,
+#content #aboutOther ul li:nth-child(5) a:before {
+  background-color: #48CAE4;
+}
+
+#content #aboutPeople h3,
+#content #aboutPolicies h3,
+#content #aboutSubmissions h3,
+#content #aboutOther h3,
+#content #managementPages h3,
+#content #managerUsers h3,
+#content #managerRoles h3 {
+  font-size: 3em !important;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%) !important;
+  color: transparent !important;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-bottom: -1px;
+}
+
+/* End About Pages*/
+
+/* Start Submission Pages*/
+
+#content #submissionPreparationChecklist h3 {
+  width: 100%;
+}
+
+#content #authorGuidelines ol,
+#content #submissionPreparationChecklist ol,
+#content #copyrightNotice .WordSection1,
+#content #privacyStatement p,
+#content #publisher p {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem !important;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+  margin-top: -30px;
+  margin-bottom: 4em;
+}
+
+#content #authorGuidelines ol::before,
+#content #submissionPreparationChecklist ol::before,
+#content #copyrightNotice .WordSection1:before,
+#content #privacyStatement p::before,
+#content #publisher p:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li {
+  width: 90% !important;
+  line-height: 1.5em;
+  margin-left: 2em;
+  counter-increment: my-counter;
+  margin-bottom: 10px;
+}
+
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li {
+  counter-increment: my-counter;
+  margin-bottom: 10px;
+}
+
+#content #authorGuidelines ol li::marker,
+#content #submissionPreparationChecklist ol li::marker {
+  content: counter(my-counter) ".";
+}
+
+#content #submissionPreparationChecklist p,
+#content #linkDisableUserReg,
+#content #linkAuthorGuidelines,
+#content #linkCopyrightNotice,
+#content #linkPrivacyStatement {
+  display: none;
+}
+
+#content #copyrightNotice {
+  position: relative;
+  margin-bottom: -20px;
+}
+
+#content #copyrightNotice .WordSection1 {
+  display: inline-block;
+  height: 640px;
+}
+
+#content #copyrightNotice .WordSection2 {
+  position: absolute;
+  top: 190px;
+}
+
+#content #copyrightNotice .WordSection1 p,
+#content #copyrightNotice .WordSection2 p {
+  display: inline-block;
+  padding-right: 4% !important;
+}
+
+#content #submissionPreparationChecklist ol,
+#content #privacyStatement p {
+  margin-top: -12px;
+}
+
+#content #copyrightNotice h3,
+#content #privacyStatement h3 {
+  margin-bottom: 5%;
+}
+
+#content #onlineSubmissions h3 {
+  margin-bottom: 5px;
+}
+
+#content #onlineSubmissions {
+  margin-bottom: 4em !important;
+}
+
+#content #authorGuidelines {
+  margin-bottom: 8%;
+
+}
+
+#content #publisher p {
+  margin-top: .1em;
+}
+
+#content #publisher p:nth-child(2) {
+  display: none
+}
+
+/* End Submission Pages*/
+
+input.textField, input.uploadField, select.selectMenu, textarea.textArea {
+  padding: .3em;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 1em;
+  font-family: "Calibri-dw", sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+input.textField:focus {
+  outline: none;
+  border-bottom: 2px solid #08aeea;
+}
+
+input.textField:focus, input.uploadField:focus, select.selectMenu:focus, textarea.textArea:focus {
+  border-top: unset;
+  border-left: unset;
+  border-right: unset;
+  border-bottom: 3px solid #f6b62c;
+}
+
+input[type=button],
+input[type=submit] {
+  background-image: unset;
+  background-repeat: repeat-x;
+  text-shadow: unset;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+  background-image: unset;
+  cursor: pointer;
+  text-decoration: none
+}
+
+input[type=button], input[type=submit],
+table.announcementsMore tr td a,
+table.tocArticle .tocGalleys .file,
+#eventLogEntries a.action {
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 3px 5px;
+  font-weight: bold;
+  font-size: .8em;
+  border: 2px solid #007bff;
+  transition: 0.5s ease-in-out;
+}
+
+input[type=button]:hover, input[type=submit]:hover,
+table.announcementsMore tr td a:hover,
+table.tocArticle:hover .tocGalleys .file:hover,
+#eventLogEntries a.action:hover {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  color: rgb(0, 135, 255);
+  transition: 0.5s ease-in-out;
+}
+
+input.defaultButton {
+  color: #fff;
+  font-weight: 700;
+}
+
+input[type=file] {
+  font-size: .8em;
+}
+
+form#submit .button {
+  margin-bottom: 1em;
+}
+
+.banner-img {
+  margin-bottom: 10px;
+}
+
+.banner-img:hover {
+  opacity: .7;
+  filter: alpha(opacity=70);
+}
+
+.indexers {
+  margin: 10px 0;
+}
+
+.indexers a {
+  border: 2px solid transparent;
+  padding: 5px 3px;
+}
+
+.indexers a:hover {
+  background: 0 0;
+  border: 2px dotted navy;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.indexers a img {
+  height: 38px;
+}
+
+a img {
+  border: 0;
+}
+
+div.thickSeparator {
+  margin-bottom: 10px;
+}
+
+span.highlight {
+  background-color: #ffff80;
+}
+
+.intro {
+  background-color: unset;
+  border: unset;
+  padding: 10px;
+}
+
+.intro ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+#content .cfp {
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  text-align: justify;
+  line-height: 2em;
+}
+
+.highlight {
+  background-color: ivory;
+  border: 1px dashed #ffa851;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+
+#issues {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100% !important;
+  color: white;
+}
+
+#issues>div {
+  padding: 30px;
+  margin: 5px;
+  width: unset !important;
+  float: unset !important;
+  background: rgba(231, 240, 244, 0.21);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.2px);
+  -webkit-backdrop-filter: blur(10.2px);
+  border: 1px solid rgba(45, 134, 183, 0.55);
+}
+
+#issues>div h4 {
+  margin: 0;
+  font-size: 1em !important;
+  font-weight: normal !important;
+}
+
+#issues div h3 {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-left: 35px;
+  font-size: 3em !important;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%) !important;
+  color: transparent !important;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+#issues div h4 {
+  margin-bottom: 3px;
+  background: linear-gradient(to bottom, #5A9FDA, #54CFFF);
+  padding: 10px 10px;
+  border: 2px solid #B7DEED;
+}
+
+#issues div h4:hover {
+  border: 2px solid #B7DEED;
+  background: white;
+  transition: 1s ease-in-out;
+}
+
+#issues div h4:hover a {
+  color: black !important;
+}
+
+#issues div div:nth-child(2) h4 {
+  border-top-right-radius: 10px !important;
+}
+
+#issues div div:nth-child(3) h4 {
+  border-bottom-left-radius: 10px !important;
+}
+
+#issues div h4 a {
+  color: white;
+}
+
+.issueCoverImage {
+  border: 1px solid #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.issueCoverImage img {
+  border: 0 solid #fff;
+  box-shadow: 4px 4px 6px #aaa;
+  margin: 1em 2em 1em 0;
+  width: 100px;
+}
+
+#content #issues .separator {
+  border-bottom: none;
+}
+
+#content #registerForm h3,
+#content #searchForm h4,
+#content #results h4,
+#content #articleSubmissions h3,
+#content #publicationEthics h3 {
+  background-image: linear-gradient(to bottom, rgb(0, 135, 255), #2d9dcad4);
+  padding-left: 1em;
+  padding-top: .2em;
+  padding-bottom: .2em;
+  font-size: 1.5em;
+  width: 97%;
+}
+
+#content #contact h3 {
+  padding-left: 1em;
+  padding-top: .1em;
+  padding-bottom: .1em;
+  font-size: 1.5em;
+}
+
+#content #searchForm h4 {
+  width: 94%;
+}
+
+#content #group ol div li {
+  font-family: "Calibri-dw", sans-serif;
+  padding: .1em .5em;
+  margin-left: 2%;
+  font-weight: lighter;
+  font-size: 1em;
+  max-width: 90%;
+  transition: .5s ease-in-out;
+}
+
+#content #group ol .member li:hover a {
+  background-color: unset;
+}
+
+#content #group ol .member li:hover a:hover {
+  font-weight: bolder;
+}
+
+#content #sectionPolicies h4 {
+  padding-left: 1.2em;
+}
+
+#content #group ol .member {
+  margin-left: 1.5em;
+}
+
+#content #peerReviewProcess p,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #submissionPreparationChecklist p,
+#content #sectionPolicies table,
+#content #focusAndScope table,
+#content #copyrightNotice div,
+#content #privacyStatement p,
+#content #publisher p,
+#content #registerForm table,
+#content #registerForm p,
+#content #search #searchForm #emptyFilters .extrasContainer table.data tr td label,
+#content #search #searchForm #emptyFilters .extrasContainer p {
+  padding-left: 1.5em;
+}
+
+#content #onlineSubmissions p {
+  margin-left: 1.7em;
+  width: 91%;
+}
+
+#content #focusAndScope table {
+  line-height: 3em;
+}
+
+#content #peerReviewProcess p,
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li,
+#content #submissionPreparationChecklist p,
+#content #copyrightNotice div,
+#content #privacyStatement p {
+  width: 96.5%;
+}
+
+#content #focusAndScope ul li,
+#content #sectionPolicies tr td,
+#content #peerReviewProcess p,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #submissionPreparationChecklist p,
+#content #copyrightNotice div p,
+#content #privacyStatement p,
+#content #onlineSubmissions p,
+#content #publisher p,
+#content #registerForm p {
+  font-size: 1em;
+}
+
+#content #submissions table.listing tr.heading td a {
+  color: black;
+}
+
+#content #submissions table.listing tr.heading td a:hover,
+#submissions table.listing tr td a.action:hover {
+  text-decoration: underline;
+}
+
+/* #content #submissions table.listing tr.heading td a:hover,
+#submissions table.listing tr td:not(td:nth-last-child(1)) a.action:hover {
+  text-decoration: underline;
+} */
+
+/* #content #submissions table.listing tr:not(tr:nth-last-child(1), tr.heading) td a {
+  color: #0074D9;
+  background-color: unset;
+  border: unset;
+} */
+
+#content #authorGuidelines ol {
+  margin-left: -1%;
+}
+
+#content #search #searchForm #emptyFilters .extrasContainer table.data {
+  width: 105%;
+}
+
+#content #search #searchForm #emptyFilters .extrasContainer table.data tr td.formSubLabel h4 {
+  width: 92.5%;
+}
+
+#content #results h4 {
+  width: 97%;
+}
+
+#content #articleCitations {
+  counter-reset: listCounter;
+}
+
+#content #articleCitations div p::before {
+  content: "["counter(listCounter) "] ";
+  counter-increment: listCounter;
+}
+
+.tocSectionTitle {
+  display: inline;
+  border-bottom: 3px solid #f6b62c;
+}
+
+.cover-image-intro {
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 12px #ccc;
+  margin: 0 0 0 1em;
+  width: 100px;
+}
+
+.color-box {
+  display: block;
+  float: left;
+  height: 40px;
+  margin-right: 5px;
+  width: 60px;
+}
+
+.color1 {
+  background-color: #0d355e;
+}
+
+.color1-light {
+  background-color: #f0f0ff;
+}
+
+.color2 {
+  background-color: Orange;
+}
+
+.color2-light {
+  background-color: #ffedcc;
+}
+
+.color-grey-light {
+  background-color: #f4f4f4;
+}
+
+#journalDescription {
+  float: left;
+  line-height: 1.9em;
+  color: #000;
+  text-align: justify;
+  width: 58%;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.1em;
+}
+
+#homepageImage {
+  float: right;
+  width: 38%;
+  margin-bottom: 10px;
+}
+
+#homepageImage img {
+  height: auto;
+  max-width: 100%;
+  margin-top: -1em;
+}
+
+#setupForm #homepageImage, #setupForm #journalDescription {
+  width: 100%;
+}
+
+#setupForm #homepageImage img {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.articleDOI, .tocAuthors, .tocDOI {
+  margin-top: 4px;
+  padding-left: 30px;
+}
+
+#body {
+  font-family: "Calibri-dw", sans-serif;
+}
+
+#setupForm .uploadField {
+  width: 400px !important;
+  margin-right: 10px;
+  float: left !important;
+}
+
+#sidebar {
+  float: right;
+  color: #ffffff;
+}
+
+#sidebar-username, #sidebar-password {
+  width: 110%;
+  margin-left: .5em;
+}
+
+.articleDOI, .tocDOI {
+  background: url(http://jurnalscientia.org/public/site/images/verawati/icon-doi.png) 1px 2px no-repeat rgba(0, 0, 0, 0);
+}
+
+.tocAuthors {
+  background: url(https://obsesi.or.id/public/author.png) 1px 2px no-repeat rgba(0, 0, 0, 0);
+  font-style: italic;
+  padding-bottom: 5px;
+}
+
+table.tocArticle .tocGalleys {
+  width: 6em;
+}
+
+table.tocArticle .tocGalleys .file {
+  padding: .5em 1em;
+  transition: .5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .25em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
+table.tocArticle .tocGalleys .file:hover {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+.tocPages {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 10px;
+}
+
+.tocGalleys, .tocPages {
+  padding: 10px 10px;
+}
+
+#content #articleAbstract div {
+  font-size: 1.1em;
+  text-align: justify;
+  line-height: 2em;
+}
+
+#articleFullText a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+}
+
+#articleFullText a:hover {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#pageFooter {
+  background-image: linear-gradient(to bottom, rgb(25, 66, 101), #15384f);
+  color: white;
+}
+
+#pageFooter .footer-layout {
+  display: flex;
+  padding: 2% 1.9%;
+  margin: .2em .2em;
+}
+
+#pageFooter .footer-layout .footer-title {
+  display: inline-block;
+  font-size: 1.3em !important;
+  font-weight: bolder;
+  margin-bottom: .6em;
+  margin-right: .2em;
+  border-bottom: 2px solid #ff9b00ed;
+}
+
+#pageFooter .footer-layout .useful-links,
+#pageFooter .footer-layout .our-partner,
+#pageFooter .footer-layout .rmsi,
+#pageFooter .footer-layout .contact-us {
+  margin-right: 2.2em;
+}
+
+#pageFooter .footer-layout .footer-content .list a {
+  display: inline-block;
+  color: white;
+  margin: .3em .2em;
+  transition: .1s ease-in-out;
+}
+
+#pageFooter .footer-layout .footer-content .list .email:hover {
+  background-color: unset;
+  padding: unset;
+  transform: unset;
+}
+
+#pageFooter .footer-layout .footer-content .list a:hover {
+  background-color: #ff9b00ed;
+  padding: .2em .3em;
+  transform: scale(1.1);
+  border-radius: 10px;
+  transition: transform .1s ease-in-out;
+}
+
+#pageFooter .footer-layout .footer-content img {
+  margin-bottom: 1em;
+}
+
+#pageFooter .footer-layout .footer-content .about {
+  line-height: 1.5em;
+}
+
+/* Created by the RMSI Team on August 20, 2023 */
+/* Version 3.3 */
+
+@font-face {
+  font-family: "Calibri-dw";
+  src: url("https://www.deliverlean.com/fonts/calibri/calibri.woff");
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+* {
+  font-family: "Calibri-dw", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#headerTitle,
+#navbar {
+  width: 1020px;
+}
+
+#header {
+  background-color: transparent;
+  padding-bottom: 40px;
+}
+
+#navbar {
+  background-image: linear-gradient(to right, rgb(0, 135, 255), #fff);
+  height: 2em;
+  border: 0;
+  margin-bottom: 10px;
+  margin-left: 0;
+  padding: 0;
+  text-align: left;
+}
+
+#navbar ul {
+  padding-left: 10px;
+}
+
+#navbar ul li {
+  float: left;
+  padding: 0;
+}
+
+#navbar a,
+#navbar a:link,
+#navbar a:visited {
+  font-family: "Calibri-dw", sans-serif;
+  color: #000;
+  display: inline-block;
+  font-size: .6em;
+  font-weight: 700;
+  vertical-align: middle;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+/* #navbar ul.menu li a:hover {
+  text-decoration: none ;
+  background: #0e0e9c ;
+  text-shadow: 1px 1px #000 ;
+  color: white ;
+  transform: scale(1.1) ;
+  transition: .2s ease-in-out ;
+} */
+
+
+#navbar ul.menu li {
+  --color: #0008C1;
+  font-family: inherit;
+  height: 2em;
+  line-height: 0.5em;
+  position: relative;
+  overflow: hidden;
+  transition: color .5s;
+  z-index: 1;
+  font-size: 1em;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+#navbar ul.menu li:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color) !important;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+#navbar ul.menu li a:hover {
+  text-shadow: unset;
+  background: unset;
+  color: #fff;
+}
+
+#navbar ul.menu li:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+}
+
+#navbar ul.menu li:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+#navbar ul.menu li:active:before {
+  /* background: #3a0ca3; */
+  transition: background 0s;
+}
+
+/* #navbar a:active {
+  font-weight: 900 ;
+  transition: .2s ease-in-out ;
+} */
+
+#sidebar input.textField,
+#sidebar select.selectMenu,
+#sidebar input.button,
+input[type="button"],
+input[type="submit"],
+table.announcementsMore tr td a,
+table.tocArticle .tocGalleys .file {
+  font-size: .9em !important;
+}
+
+#onlineSubmissions p,
+table.announcements tr.intro td.intro:not(tr.intro),
+#content #registerForm p:nth-child(1),
+#content #registerForm p:nth-child(2),
+#content p span.instruct {
+  width: 94.5%;
+  padding: 1.3em;
+  background: #e3f0f4;
+  border-left: 5px solid #f6b62c;
+  line-height: 2.2em;
+  margin-bottom: 1.5em;
+}
+
+#content p span.instruct {
+  display: inline-block;
+}
+
+table.announcements tr.intro td.intro:not(tr.intro) {
+  width: 80%;
+}
+
+#onlineSubmissions p a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  transition: .5s ease-in-out;
+}
+
+#onlineSubmissions p a:hover {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#authorGuidelines ol li,
+#submissionPreparationChecklist ol li,
+#content #results ul li {
+  padding: .2em 1em;
+  text-align: justify;
+}
+
+#onlineSubmissions .separator,
+#authorGuidelines .separator,
+#submissionPreparationChecklist .separator,
+#copyrightNotice .separator,
+#privacyStatement .separator {
+  display: none;
+}
+
+.separator {
+  display: none;
+}
+
+#body, #header, #main, #navbar, #sidebar {
+  display: inline-block !important;
+}
+
+#header, #main, #navbar, ul.sidemenu li:before {
+  display: none;
+}
+
+#leftSidebar div.block span.blockTitle, #rightSidebar div.block span.blockTitle, #sidebarDevelopedBy.block, #sidebarHelp.block {
+  background-image: linear-gradient(to right, #005b9a, #0091c5, #00bcd4);
+  font-family: "Calibri-dw", sans-serif;
+}
+
+#body, #main, body {
+  background-color: #fff;
+}
+
+#additionalHomeContent, #announcementsHome, #navbar {
+  clear: both;
+}
+
+#container, #headerTitle {
+  margin: 0 auto;
+  display: inline-block;
+}
+
+#announcements,
+#container {
+  width: auto;
+}
+
+.announcements tr.description td.description p {
+  font-size: 1.1em;
+}
+
+table.announcements tr.intro td.intro:not(tr.intro) {
+  line-height: 1.5em;
+}
+
+table.announcements tr.intro, table.announcements tr.intro td.intro, table.announcements tr.description td.description p {
+  width: 118%;
+  text-align: justify;
+}
+
+table.announcementsMore tr td a {
+  width: 10px;
+}
+
+table.announcementsMore tr td a {
+  width: 2.3em;
+  height: 1.4em;
+  line-height: 1.4em;
+  border: 2px solid red;
+  display: block;
+  text-align: center;
+  overflow: hidden;
+}
+
+#body, #container, #headerTitle, #headerTitle img {
+  display: inline-block;
+}
+
+body {
+  color: #333;
+  font-family: "Calibri-dw", sans-serif;
+  /* font-size: 1.28em; */
+  font-size: 1.15em;
+}
+
+a:active,
+a:link,
+a:visited {
+  color: #0074D9;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+a:hover {
+  background-color: unset;
+  color: #1539C0;
+  transition: .2s ease-in-out;
+}
+
+#container {
+  min-width: 730px !important;
+  text-align: center;
+  background-image: url(https://s.id/1Cw9f);
+}
+
+#header h1 {
+  color: #111;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 120px;
+  padding: 0;
+  text-shadow: 1px 1px #fff;
+}
+
+#headerTitle img {
+  float: center;
+  margin-right: 20px;
+  width: 100%;
+  height: 180px;
+}
+
+#body {
+  margin: -40px auto 0;
+  width: 1020px !important;
+  padding-bottom: 20px;
+  box-shadow: -10px 10px 50px -8px grey, 10px 10px 50px -8px grey;
+  background-color: #fff;
+  display: inline-block;
+  height: auto;
+}
+
+#main {
+  float: left;
+  margin-left: 0;
+  margin-right: 0 !important;
+  overflow: visible !important;
+  padding: 0;
+  position: relative;
+  width: 805px;
+}
+
+#main h3 {
+  margin: 10px 1em 0.5em 0em;
+  padding-top: 0em;
+  font-weight: normal;
+
+}
+
+#content h1, #content h2, #content h3, #content h4, #main>h2, #main h3 {
+  color: #000000;
+  font-family: "Calibri-dw", sans-serif;
+  font-weight: 700;
+}
+
+#content {
+  border-top: 0 dotted #000;
+}
+
+#content #journal {
+  border-top: 0 dotted #000;
+}
+
+
+#content {
+  text-align: justify;
+  color: black;
+}
+
+#content p {
+  line-height: 1.9em;
+  text-align: justify;
+}
+
+#content #contact p {
+  margin-left: 1.5em;
+  font-size: unset;
+}
+
+#emptyFilters .extrasContainer p {
+  font-size: unset;
+}
+
+#content li::marker {
+  content: "\2BC8";
+  color: #000;
+}
+
+/* Start Editorial Team Pages */
+#content #displayMembership h4,
+#content #group h4 {
+  font-size: 3.5em;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-top: -28px;
+}
+
+#content #group h4 {
+  margin-top: 1px;
+  margin-bottom: -10px;
+}
+
+#content #displayMembership h4::after {
+  content: "background";
+  font-size: 0.6em;
+  position: absolute;
+  top: 96px;
+  left: 20px;
+  color: white;
+  font-weight: 700;
+  height: 30px;
+  background-color: white;
+}
+
+#content #displayMembership .member,
+#content #contact div,
+#content #group ol.editorialTeam .member {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+}
+
+#content #displayMembership .member::before,
+#content #contact div::before,
+#content #group ol.editorialTeam .member::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #displayMembership .member a:hover,
+#content #group a:hover,
+#content #submissionPreparationChecklist ol li a:hover,
+#content #authorGuidelines ol li a:hover,
+#content #copyrightNotice a:hover,
+#content #publisher p:hover,
+#content #peerReviewProcess ol li a:hover {
+  text-decoration: underline !important;
+  cursor: pointer;
+  color: #4499E3 !important
+}
+
+/* End Editorial Team Pages */
+
+/* Start Editorial Policies Pages */
+#content #focusAndScope h3,
+#content #sectionPolicies h3,
+#content #peerReviewProcess h3,
+#content #publicationFrequency h3,
+#content #openAccessPolicy h3,
+#content #authorGuidelines h3,
+#content #onlineSubmissions h3,
+#content #submissionPreparationChecklist h3,
+#content #copyrightNotice h3,
+#content #privacyStatement h3,
+#content #publisher h3 {
+  font-size: 3.5em;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-top: -28px;
+}
+
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #peerReviewProcess p {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem !important;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+}
+
+#content #peerReviewProcess ol li:before,
+#content #publicationFrequency p:before,
+#content #openAccessPolicy p:before,
+#content #peerReviewProcess p:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #peerReviewProcess p {
+  margin-bottom: 1.5em !important;
+  margin-top: -8px;
+}
+
+#content #peerReviewProcess,
+#content #publicationFrequency {
+  margin-bottom: 3em;
+}
+
+#content #peerReviewProcess p:nth-child(2),
+#content #peerReviewProcess p:nth-last-child(2) {
+  display: none
+}
+
+#content #peerReviewProcess ol {
+  padding: unset;
+  margin-top: -20px;
+}
+
+#peerReviewProcess .reviewers {
+  margin-top: 5px !important;
+}
+
+#peerReviewProcess p:nth-child(3),
+#focusAndScope table {
+  margin-top: -25px !important;
+}
+
+#sectionPolicies h3 {
+  margin-bottom: 5px !important;
+}
+
+#peerReviewProcess {
+  margin-top: 4em !important;
+}
+
+#content ul li#linkFocusScopeDesc,
+#content ul li#linkEditorialPolicies,
+#content ul li#linkReviewPolicy,
+#content ul li#linkOpenAccessPolicy,
+#content ul li#linkPubFreqPolicy {
+  display: none
+}
+
+/* End Editorial Policies Pages */
+
+#content #group ol.editorialTeam .member li::marker {
+  content: "";
+}
+
+#content #contact div,
+#content #group ol.editorialTeam .member {
+  margin-bottom: 1.5em;
+}
+
+#content ul li {
+  min-height: 2em;
+  margin-bottom: .5em;
+  padding: .2em .4em;
+}
+
+#content ul li {
+  background-image: none;
+}
+
+#content ul li a,
+#content ol li h4 a {
+  padding: .5em .5em .5em .5em;
+  border-radius: .5em .5em .5em .5em;
+  color: black;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  transition: .2s ease-in-out;
+}
+
+#content ul.steplist li a:hover {
+  background-color: unset;
+  color: white;
+}
+
+#content ul.menu,
+#content ul.steplist {
+  display: inline;
+  line-height: 2.5em;
+}
+
+#submissionEventLog table.listing tr td a.action,
+#editors table.listing tr td a.action,
+#submissionEmailLog table.listing tr td a.action,
+#submissionNotes table.listing tr td a.action,
+#eventLogEntries table.listing tr td a.action,
+#emailLogEntries table.listing tr td a.action,
+#submissionNotes table.listing tr td a.action {
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 3px 5px;
+  font-weight: bold;
+  font-size: .8em;
+  border: 2px solid #007bff;
+  transition: 0.5s ease-in-out;
+}
+
+#submissionEventLog table.listing tr td a.action:hover,
+#editors table.listing tr td a.action:hover,
+#submissionEmailLog table.listing tr td a.action:hover,
+#submissionNotes table.listing tr td a.action:hover,
+#eventLogEntries table.listing tr td a.action:hover,
+#emailLogEntries table.listing tr td a.action:hover,
+#submissionNotes table.listing tr td a.action:hover {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  color: rgb(0, 135, 255);
+  transition: 0.5s ease-in-out;
+}
+
+#content ul.menu li a:hover,
+#content ul.steplist li a:hover {
+  color: #fff;
+  margin: unset;
+  transition: .2s ease-in-out;
+}
+
+/* #content ul.steplist li {
+  background-color: red;
+  padding: 5px 10px;
+} */
+
+#content li h4, #content li p {
+  margin-left: 1em;
+  line-height: 1.5em;
+  text-align: justify;
+  color: black;
+}
+
+#content li p {
+  margin-left: 1.5em;
+}
+
+#content li h4 a {
+  font-size: .7em;
+  margin-left: -1em;
+  font-weight: lighter;
+}
+
+#content li h4 a:hover {
+  margin-left: 0em;
+  color: FFF;
+  background-color: #3B71CA;
+  font-weight: lighter
+}
+
+#content li h4 a {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#content ul.menu li.current,
+#content ul.menu li:hover,
+#content ul.steplist li.current,
+#content ul.steplist li:hover {
+  background-image: linear-gradient(to bottom, #ec790f 0, #f28c31 100%);
+  background-repeat: repeat-x;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: .2s ease-in-out;
+}
+
+#content ul.menu li,
+#content ul.steplist li {
+  background-image: linear-gradient(to bottom, #ecedf2 0, #f6f7fa 100%);
+  background-repeat: repeat-x;
+  border-radius: 3px;
+  padding: 5px 8px;
+  box-shadow: 0px 4px 10px rgba(27, 94, 154, 0.81);
+}
+
+#content #principalContact p br:nth-child(2) {
+  display: none;
+}
+
+#journalTitleAndLogo img,
+#pageHeaderTitle img {
+  width: 100%;
+}
+
+table.data {
+  line-height: 2em;
+}
+
+table.listing td.headseparator,
+table.listing td.separator,
+table.info td.separator,
+table.listing td.endseparator {
+  border-top: unset;
+  border-bottom: unset;
+  display: none;
+}
+
+table.listing tr.heading {
+  background-image: linear-gradient(to bottom, #5A9FDA, #54CFFF);
+}
+
+table.listing tr.heading td {
+  font-weight: bolder;
+  vertical-align: middle;
+}
+
+table.listing tr td,
+table.listing tr td img {
+  text-align: center;
+  padding: 1.5em 0em;
+  vertical-align: middle;
+}
+
+table.listing tr td a.icon img {
+  padding: unset;
+}
+
+#results table.listing tr:nth-child(3n+5) {
+  display: none;
+}
+
+table.listing tr:nth-child(2n+1):not(tr.heading, tr:nth-last-child(1)) {
+  background-color: #8fd0ff61;
+}
+
+table.listing tr {
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading):hover .file:hover,
+#results table.listing tr:hover td a.action:hover,
+#results table.listing tr:hover td:nth-last-child(1) a:hover {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(tr.heading, tr:nth-child(3n+5), tr:nth-last-child(1)):hover,
+#results table.listing tr:not(tr.heading, tr:nth-last-child(1)):hover,
+#users table.listing tr:not(.heading, tr:nth-last-child(1)):hover,
+#notifications table.notifications:nth-child(1n+1):hover {
+  background-color: #ff9b00ed;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(tr.heading, tr:nth-child(3n+5), tr:nth-last-child(1)):hover a,
+#results table.listing tr:not(tr.heading, tr:nth-last-child(1)):hover a,
+#notifications table.notifications:hover tr td.notificationFunction a:hover,
+#users table.listing tr td:nth-child(5) a:hover,
+#users table.listing tr.heading td a {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):hover .file,
+#results table.listing tr:not(.heading, tr:nth-last-child(1)):hover td a.action,
+#results table.listing tr:not(.heading, tr:nth-last-child(1)):hover td:nth-last-child(1) a,
+#users table.listing tr:not(.heading, tr:nth-last-child(1)):hover td:nth-child(5) a.action,
+#notifications table.notifications:hover tr td.notificationFunction a,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing .file,
+#results table.listing tr td a.action,
+#results table.listing tr td:nth-last-child(1) a,
+#notifications table.notifications tr td.notificationFunction a,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  transition: .5s ease-in-out;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td strong,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td strong {
+  padding: .5em 1em;
+  border-radius: 8px;
+  margin-right: .4em;
+  font-weight: bolder;
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#submissions table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td strong {
+  margin-right: unset;
+}
+
+#results table.listing tr:not(.heading, tr:nth-child(3n+5)):nth-last-child(1) td a:hover,
+#submissions table.listing tr:not(.heading):nth-last-child(1) td a:hover {
+  background-color: #014b9b;
+  border: 2px solid #014b9b;
+  color: white;
+}
+
+#results table.listing tr.heading td:nth-child(1) {
+  width: 40%;
+}
+
+#results table.listing tr.heading td:nth-child(2) {
+  width: 60%;
+}
+
+#users table.listing tr td:nth-child(5) .action {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .4em .4em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+  margin-right: .1em;
+  transition: .5s ease-in-out;
+}
+
+#submissions table.listing tr:nth-last-child(1) td a:nth-child(1),
+#submissions table.listing tr:nth-last-child(1) td a:nth-last-child(1) {
+  display: none;
+}
+
+#submissions table.listing tr td:nth-last-child(1) a {
+  margin-right: unset;
+}
+
+table.listing tr td.nowrap br,
+#content #articleAbstract br,
+#content #articleCitations br {
+  display: none;
+}
+
+#submissionPreparationChecklist,
+#authorGuidelines,
+#peerReviewProcess,
+#group,
+#displayMembership,
+#content #results ul li {
+  text-align: justify;
+  line-height: 2em;
+}
+
+#submissionPreparationChecklist ol li a,
+#authorGuidelines ol li a,
+#peerReviewProcess ol li a,
+#group ol li a {
+  color: #4e82a8;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0);
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  text-decoration: none;
+}
+
+#submissionPreparationChecklist ol li a:hover,
+#authorGuidelines ol li a:hover,
+#peerReviewProcess ol li a:hover,
+#group ol li a:hover {
+  margin: 0 0 0 0;
+  background-color: white;
+  color: #2168b5;
+  font-weight: lighter;
+}
+
+ul.sidemenu li a, ul.sidemenu li:first-child a {
+  border-top: 1px solid #FFF;
+}
+
+ul.sidemenu {
+  padding-left: 0 !important;
+  margin: -10px -10px 0;
+}
+
+ul.sidemenu li {
+  padding: 0;
+}
+
+ul.sidemenu li a {
+  background-color: #ffde59;
+  border-bottom: 3px solid #FFF;
+  color: #FFF;
+  display: block;
+  padding: .66em 10px .6em 13px;
+  text-decoration: none;
+}
+
+#leftSidebar {
+  display: none;
+  border-right: 1px solid #ccc;
+  float: left;
+  width: 0;
+}
+
+ul.sidemenu li:last-child a {
+  border-bottom: 0;
+}
+
+ul.sidemenu li a:hover {
+  background-color: #3a6d98;
+  text-decoration: underline;
+}
+
+#breadcrumb {
+  margin: 10px 0 0 20px;
+  padding: .4em 2em;
+  background-color: #8fd0ff61;
+  font-size: .5em;
+  border-radius: 2em;
+  font-weight: bolder;
+  width: 90%;
+  border-bottom: unset;
+}
+
+#breadcrumb a {
+  color: #000;
+  font-style: italic;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.2em;
+}
+
+#breadcrumb a:hover {
+  color: rgb(24, 166, 227);
+  transform: scale(2);
+}
+
+#content, #main>h2, #main>h3 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#cpr {
+  border: 0 #fff;
+}
+
+#leftSidebar, #rightSidebar {
+  font-size: .68em;
+  height: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  padding: 50px 10px 10px;
+}
+
+#rightSidebar {
+  border-left: 1px solid #ccc;
+  float: right;
+  width: 191px;
+  background-color: #ffffff;
+}
+
+#leftSidebar div.block, #rightSidebar div.block {
+  border: 0;
+  color: #000000;
+  padding: 0 0 10px;
+  margin-bottom: 10px;
+}
+
+#leftSidebar div.block span.blockTitle, #rightSidebar div.block span.blockTitle, #sidebarDevelopedBy.block, #sidebarHelp.block {
+  color: #000000;
+  display: block;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+  padding: 10px 10px !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+#notifications table.notifications {
+  line-height: 3em;
+  padding: .5em 1em;
+}
+
+#notifications table.notifications:nth-child(2n+1) {
+  background-color: #8fd0ff61;
+}
+
+#notifications table.notifications tr td.notificationContent {
+  font-weight: bolder;
+}
+
+#notifications table.notifications tr td.notificationContent p {
+  font-weight: normal;
+  font-size: .85em;
+}
+
+#notifications table.notifications tr td.notificationFunction a {
+  font-size: .8em;
+}
+
+#customblock-Index-In a img,
+#customblock-Template p a img,
+#customblock-Acreditation p a img,
+#customblock-Visitors p a img {
+  background: rgba(255, 255, 255, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.9px);
+  -webkit-backdrop-filter: blur(8.9px);
+}
+
+#sidebarDevelopedBy.block a, #sidebarHelp.block a {
+  color: #222;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+#customblock-Journal-Information .menu-info {
+  background-image: linear-gradient(to bottom, #5A9FDA, #54CFFF);
+  border: solid 1px #eceff5;
+  padding: 9px;
+  margin: 0;
+  text-align: center;
+  line-height: 23px;
+  font-size: 1em;
+}
+
+#customblock-Journal-Information .menu-info a {
+  color: black;
+  text-decoration: none;
+  transition: .2s ease-in-out;
+}
+
+#customblock-Journal-Information .menu-info a:hover {
+  background-color: unset !important;
+  text-decoration: none;
+  font-size: 1.15em;
+  transition: .2s ease-in-out;
+}
+
+#content h4 a, input[type=button], input[type=submit], table.tocArticle a {
+  text-decoration: none;
+}
+
+.block p {
+  margin: 0 !important;
+}
+
+.block ul {
+  list-style: none;
+  padding-left: 1.2em;
+}
+
+.block li:before {
+  content: "\00BB";
+  display: block;
+  height: 0;
+  left: -1em;
+  position: relative;
+  width: 0;
+}
+
+.banner-img, .indexers a, .intro {
+  display: inline-block;
+}
+
+#sidebarFontSize.block {
+  padding-bottom: 35px !important;
+  display: none;
+}
+
+table.tocArticle {
+  font-weight: bolder;
+  padding: 1rem;
+  margin-bottom: 1.5em;
+  border-radius: 2rem 2rem 2rem 2rem;
+  box-shadow: .2rem .2rem .1rem #1e6292;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle:hover {
+  border-radius: 0rem 0rem 2rem 0rem;
+  background-color: #006eff85;
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle tr:hover .tocTitle a {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+table.tocArticle td {
+  padding: 15px 20px;
+}
+
+table.tocArticle:hover a {
+  color: black;
+}
+
+table.tocArticle:nth-child(2n+1) tr {
+  background-color: unset;
+}
+
+table.tocArticle:nth-child(2n) tr {
+  background-color: unset;
+}
+
+.tocTitle {
+  font-weight: 700;
+}
+
+td.tocGalleys {
+  padding-right: 10px;
+}
+
+#content ul.menu {
+  margin: 0px;
+}
+
+#content ul.menu a {
+  color: black;
+}
+
+#content #submit {
+  display: inline-block;
+  margin-bottom: .1em;
+  margin-left: 1.9em;
+}
+
+#content #submit .selectMenu {
+  margin-bottom: 2%;
+}
+
+
+#content table tr td ul.plain li::marker {
+  content: unset;
+}
+
+#content table tr td ul.plain li a {
+  padding: unset;
+  border-radius: unset;
+  color: black;
+  box-shadow: unset;
+  transition: unset
+}
+
+#content table tr td ul.plain li a:hover {
+  background-color: unset;
+  color: white;
+  font-weight: unset;
+  transition: unset;
+  margin-left: unset;
+  transition: unset;
+}
+
+/* Start About Pages*/
+#content #aboutPeople ul,
+#content #aboutPolicies ul,
+#content #aboutSubmissions ul,
+#content #aboutOther ul,
+#content #managementPages ul,
+#content #managerUsers ul,
+#content #managerRoles ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -40px !important;
+}
+
+#content #aboutPeople ul li::marker,
+#content #aboutPolicies ul li::marker,
+#content #aboutSubmissions ul li::marker,
+#content #aboutOther ul li::marker,
+#content #managementPages ul li::marker,
+#content #managerUsers ul li::marker,
+#content #managerRoles ul li::marker {
+  content: "" !important;
+}
+
+#content #aboutPeople ul li a,
+#content #aboutPolicies ul li a,
+#content #aboutSubmissions ul li a,
+#content #aboutOther ul li a,
+#content #managementPages ul li a,
+#content #managerUsers ul li a,
+#content #managerRoles ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  width: 10em;
+  text-align: center;
+  margin-right: 20px;
+  background: rgba(31, 137, 214, 0.23);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+#content #aboutPeople ul li a::before,
+#content #aboutPolicies ul li a::before,
+#content #aboutSubmissions ul li a::before,
+#content #aboutOther ul li a::before,
+#content #managementPages ul li a::before,
+#content #managerUsers ul li a::before,
+#content #managerRoles ul li a::before {
+  content: "";
+  position: absolute;
+  top: -35px;
+  right: -25px;
+  height: 50px;
+  width: 50px;
+  z-index: -1;
+  border-radius: 50%;
+  transition: .5s ease-in-out;
+}
+
+#content #aboutPeople ul li a:hover::before,
+#content #aboutPolicies ul li a:hover::before,
+#content #aboutSubmissions ul li a:hover::before,
+#content #aboutOther ul li a:hover::before,
+#content #managementPages ul li a:hover::before,
+#content #managerUsers ul li a:hover::before,
+#content #managerRoles ul li a:hover::before {
+  background-color: red;
+  top: -30px;
+  right: -20px;
+  height: 200px;
+  width: 200px;
+  transition: .5s ease-in-out;
+}
+
+#content #aboutPeople ul li a:hover,
+#content #aboutPolicies ul li a:hover,
+#content #aboutSubmissions ul li a:hover,
+#content #aboutOther ul li a:hover,
+#content #managementPages ul li a:hover,
+#content #managerUsers ul li a:hover,
+#content #managerRoles ul li a:hover {
+  color: white
+}
+
+#content #aboutPeople ul li:nth-child(1) a:before,
+#content #aboutPolicies ul li:nth-child(1) a:before,
+#content #aboutSubmissions ul li:nth-child(1) a:before,
+#content #aboutOther ul li:nth-child(1) a:before,
+#content #managementPages ul li:nth-child(1) a:before,
+#content #managerUsers ul li:nth-child(1) a:before,
+#content #managerRoles ul li:nth-child(1) a:before,
+
+#content #aboutPeople ul li:nth-child(5) a:before,
+#content #aboutPolicies ul li:nth-child(5) a:before,
+#content #aboutSubmissions ul li:nth-child(5) a:before,
+#content #aboutOther ul li:nth-child(5) a:before,
+#content #managementPages ul li:nth-child(5) a:before,
+#content #managerUsers ul li:nth-child(5) a:before,
+#content #managerRoles ul li:nth-child(5) a:before,
+
+#content #managementPages ul li:nth-child(9) a:before,
+#content #managementPages ul li:nth-child(13) a:before {
+  background-color: #03045E;
+}
+
+#content #aboutPeople ul li:nth-child(2) a:before,
+#content #aboutPolicies ul li:nth-child(2) a:before,
+#content #aboutSubmissions ul li:nth-child(2) a:before,
+#content #aboutOther ul li:nth-child(2) a:before,
+#content #managementPages ul li:nth-child(2) a:before,
+#content #managerUsers ul li:nth-child(2) a:before,
+#content #managerRoles ul li:nth-child(2) a:before,
+
+#content #managementPages ul li:nth-child(6) a:before,
+#content #managerRoles ul li:nth-child(6) a:before,
+
+#content #managementPages ul li:nth-child(10) a:before {
+  background-color: #023E8A;
+}
+
+#content #aboutPeople ul li:nth-child(3) a:before,
+#content #aboutPolicies ul li:nth-child(3) a:before,
+#content #aboutSubmissions ul li:nth-child(3) a:before,
+#content #aboutOther ul li:nth-child(3) a:before,
+#content #managementPages ul li:nth-child(3) a:before,
+#content #managerUsers ul li:nth-child(3) a:before,
+#content #managerRoles ul li:nth-child(3) a:before,
+
+#content #managementPages ul li:nth-child(7) a:before,
+#content #managerRoles ul li:nth-child(7) a:before,
+
+#content #managementPages ul li:nth-child(11) a:before {
+  background-color: #0077B6;
+}
+
+#content #aboutPeople ul li:nth-child(4) a:before,
+#content #aboutPolicies ul li:nth-child(4) a:before,
+#content #aboutSubmissions ul li:nth-child(4) a:before,
+#content #aboutOther ul li:nth-child(4) a:before,
+#content #managementPages ul li:nth-child(4) a:before,
+#content #managerUsers ul li:nth-child(4) a:before,
+#content #managerRoles ul li:nth-child(4) a:before,
+
+#content #managementPages ul li:nth-child(8) a:before,
+#content #managementPages ul li:nth-child(12) a:before {
+  background-color: #00B4D8;
+}
+
+#content #aboutPeople h3,
+#content #aboutPolicies h3,
+#content #aboutSubmissions h3,
+#content #aboutOther h3 {
+  font-size: 3em !important;
+  font-weight: 600;
+  background-image: conic-gradient(#553c9a 0%, #725bb2 33%, #ee4b2b 33%, #d9300f 66%, #30afb5 66%, #00c2cb 99%) !important;
+  color: transparent !important;
+  background-clip: text;
+  -webkit-background-clip: text;
+  display: inline-block;
+  height: 34px;
+  padding: 15px 0px;
+  margin-bottom: -1px;
+}
+
+/* End About Pages*/
+
+/* Start Submission Pages*/
+
+#content #submissionPreparationChecklist h3 {
+  width: 100%;
+}
+
+#content #authorGuidelines ol,
+#content #submissionPreparationChecklist ol,
+#content #copyrightNotice .WordSection1,
+#content #privacyStatement p,
+#content #publisher p {
+  position: relative;
+  max-width: 45rem;
+  padding: 2rem 1rem 1rem !important;
+  box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 0px !important;
+  margin-top: -30px;
+  margin-bottom: 4em;
+}
+
+#content #authorGuidelines ol::before,
+#content #submissionPreparationChecklist ol::before,
+#content #copyrightNotice .WordSection1:before,
+#content #privacyStatement p::before,
+#content #publisher p:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #1584CF 0%, #80CFB5 100%);
+}
+
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li {
+  width: 90% !important;
+  line-height: 1.5em;
+  margin-left: 2em;
+  counter-increment: my-counter;
+  margin-bottom: 10px;
+}
+
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li {
+  counter-increment: my-counter;
+  margin-bottom: 10px;
+}
+
+#content #authorGuidelines ol li::marker,
+#content #submissionPreparationChecklist ol li::marker {
+  content: counter(my-counter) ".";
+}
+
+#content #submissionPreparationChecklist p,
+#content #linkDisableUserReg,
+#content #linkAuthorGuidelines,
+#content #linkCopyrightNotice,
+#content #linkPrivacyStatement {
+  display: none;
+}
+
+#content #copyrightNotice {
+  position: relative;
+  margin-bottom: -20px;
+}
+
+#content #copyrightNotice .WordSection1 {
+  display: inline-block;
+  height: 640px;
+}
+
+#content #copyrightNotice .WordSection2 {
+  position: absolute;
+  top: 190px;
+}
+
+#content #copyrightNotice .WordSection1 p,
+#content #copyrightNotice .WordSection2 p {
+  display: inline-block;
+  padding-right: 4% !important;
+}
+
+#content #submissionPreparationChecklist ol,
+#content #privacyStatement p {
+  margin-top: -12px;
+}
+
+#content #copyrightNotice h3,
+#content #privacyStatement h3 {
+  margin-bottom: 5%;
+}
+
+#content #onlineSubmissions h3 {
+  margin-bottom: 5px;
+}
+
+#content #onlineSubmissions {
+  margin-bottom: 4em !important;
+}
+
+#content #authorGuidelines {
+  margin-bottom: 8%;
+
+}
+
+#content #publisher p {
+  margin-top: .1em;
+}
+
+#content #publisher p:nth-child(2) {
+  display: none
+}
+
+/* End Submission Pages*/
+
+input.textField, input.uploadField, select.selectMenu, textarea.textArea {
+  padding: .3em;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 1em;
+  font-family: "Calibri-dw", sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+input.textField:focus {
+  outline: none;
+  border-bottom: 2px solid #08aeea;
+}
+
+input.textField:focus, input.uploadField:focus, select.selectMenu:focus, textarea.textArea:focus {
+  border-top: unset;
+  border-left: unset;
+  border-right: unset;
+  border-bottom: 3px solid #f6b62c;
+}
+
+input[type=button],
+input[type=submit] {
+  background-image: unset;
+  background-repeat: repeat-x;
+  text-shadow: unset;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+  background-image: unset;
+  cursor: pointer;
+  text-decoration: none
+}
+
+input[type=button], input[type=submit],
+table.announcementsMore tr td a,
+table.tocArticle .tocGalleys .file,
+#eventLogEntries a.action {
+  background-color: #007bff;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 3px 5px;
+  font-weight: bold;
+  font-size: .8em;
+  border: 2px solid #007bff;
+  transition: 0.5s ease-in-out;
+}
+
+input[type=button]:hover, input[type=submit]:hover,
+table.announcementsMore tr td a:hover,
+table.tocArticle:hover .tocGalleys .file:hover,
+#eventLogEntries a.action:hover {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  color: rgb(0, 135, 255);
+  transition: 0.5s ease-in-out;
+}
+
+input.defaultButton {
+  color: #fff;
+  font-weight: 700;
+}
+
+input[type=file] {
+  font-size: .8em;
+}
+
+form#submit .button {
+  margin-bottom: 1em;
+}
+
+.banner-img {
+  margin-bottom: 10px;
+}
+
+.banner-img:hover {
+  opacity: .7;
+  filter: alpha(opacity=70);
+}
+
+.indexers {
+  margin: 10px 0;
+}
+
+.indexers a {
+  border: 2px solid transparent;
+  padding: 5px 3px;
+}
+
+.indexers a:hover {
+  background: 0 0;
+  border: 2px dotted navy;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.indexers a img {
+  height: 38px;
+}
+
+a img {
+  border: 0;
+}
+
+div.thickSeparator {
+  margin-bottom: 10px;
+}
+
+span.highlight {
+  background-color: #ffff80;
+}
+
+.intro {
+  background-color: unset;
+  border: unset;
+  padding: 10px;
+}
+
+.intro ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+#content .cfp {
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  text-align: justify;
+  line-height: 2em;
+}
+
+.highlight {
+  background-color: ivory;
+  border: 1px dashed #ffa851;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+
+#content #registerForm h3,
+#content #searchForm h4,
+#content #results h4,
+#content #articleSubmissions h3,
+#content #publicationEthics h3 {
+  background-image: linear-gradient(to bottom, rgb(0, 135, 255), #2d9dcad4);
+  padding-left: 1em;
+  padding-top: .2em;
+  padding-bottom: .2em;
+  font-size: 1.5em;
+  width: 97%;
+}
+
+#content #contact h3 {
+  padding-left: 1em;
+  padding-top: .1em;
+  padding-bottom: .1em;
+  font-size: 1.5em;
+}
+
+#content #searchForm h4 {
+  width: 94%;
+}
+
+#content #group ol div li {
+  font-family: "Calibri-dw", sans-serif;
+  padding: .1em .5em;
+  margin-left: 2%;
+  font-weight: lighter;
+  font-size: 1em;
+  max-width: 90%;
+  transition: .5s ease-in-out;
+}
+
+#content #group ol .member li:hover a {
+  background-color: unset;
+}
+
+#content #group ol .member li:hover a:hover {
+  font-weight: bolder;
+}
+
+#content #sectionPolicies h4 {
+  padding-left: 1.2em;
+}
+
+#content #group ol .member {
+  margin-left: 1.5em;
+}
+
+#content #peerReviewProcess p,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #submissionPreparationChecklist p,
+#content #sectionPolicies table,
+#content #focusAndScope table,
+#content #copyrightNotice div,
+#content #privacyStatement p,
+#content #publisher p,
+#content #registerForm table,
+#content #registerForm p,
+#content #search #searchForm #emptyFilters .extrasContainer table.data tr td label,
+#content #search #searchForm #emptyFilters .extrasContainer p {
+  padding-left: 1.5em;
+}
+
+#content #onlineSubmissions p {
+  margin-left: 1.7em;
+  width: 91%;
+}
+
+#content #focusAndScope table {
+  line-height: 3em;
+}
+
+#content #peerReviewProcess p,
+#content #peerReviewProcess ol li,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #authorGuidelines ol li,
+#content #submissionPreparationChecklist ol li,
+#content #submissionPreparationChecklist p,
+#content #copyrightNotice div,
+#content #privacyStatement p {
+  width: 96.5%;
+}
+
+#content #focusAndScope ul li,
+#content #sectionPolicies tr td,
+#content #peerReviewProcess p,
+#content #publicationFrequency p,
+#content #openAccessPolicy p,
+#content #submissionPreparationChecklist p,
+#content #copyrightNotice div p,
+#content #privacyStatement p,
+#content #onlineSubmissions p,
+#content #publisher p,
+#content #registerForm p {
+  font-size: 1em;
+}
+
+#content #submissions table.listing tr.heading td a {
+  color: black;
+}
+
+#content #submissions table.listing tr.heading td a:hover,
+#submissions table.listing tr td a.action:hover {
+  text-decoration: underline;
+}
+
+/* #content #submissions table.listing tr.heading td a:hover,
+#submissions table.listing tr td:not(td:nth-last-child(1)) a.action:hover {
+  text-decoration: underline;
+} */
+
+/* #content #submissions table.listing tr:not(tr:nth-last-child(1), tr.heading) td a {
+  color: #0074D9;
+  background-color: unset;
+  border: unset;
+} */
+
+#content #authorGuidelines ol {
+  margin-left: -1%;
+}
+
+#content #search #searchForm #emptyFilters .extrasContainer table.data {
+  width: 105%;
+}
+
+#content #search #searchForm #emptyFilters .extrasContainer table.data tr td.formSubLabel h4 {
+  width: 92.5%;
+}
+
+#content #results h4 {
+  width: 97%;
+}
+
+#content #articleCitations {
+  counter-reset: listCounter;
+}
+
+#content #articleCitations div p::before {
+  content: "["counter(listCounter) "] ";
+  counter-increment: listCounter;
+}
+
+.tocSectionTitle {
+  display: inline;
+  border-bottom: 3px solid #f6b62c;
+}
+
+.cover-image-intro {
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 12px #ccc;
+  margin: 0 0 0 1em;
+  width: 100px;
+}
+
+.color-box {
+  display: block;
+  float: left;
+  height: 40px;
+  margin-right: 5px;
+  width: 60px;
+}
+
+.color1 {
+  background-color: #0d355e;
+}
+
+.color1-light {
+  background-color: #f0f0ff;
+}
+
+.color2 {
+  background-color: Orange;
+}
+
+.color2-light {
+  background-color: #ffedcc;
+}
+
+.color-grey-light {
+  background-color: #f4f4f4;
+}
+
+#journalDescription {
+  float: left;
+  line-height: 1.9em;
+  color: #000;
+  text-align: justify;
+  width: 58%;
+  font-family: "Calibri-dw", sans-serif;
+  font-size: 1.1em;
+}
+
+#homepageImage {
+  float: right;
+  width: 38%;
+  margin-bottom: 10px;
+}
+
+#homepageImage img {
+  height: auto;
+  max-width: 100%;
+  margin-top: -1em;
+}
+
+#setupForm #homepageImage, #setupForm #journalDescription {
+  width: 100%;
+}
+
+#setupForm #homepageImage img {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.articleDOI, .tocAuthors, .tocDOI {
+  margin-top: 4px;
+  padding-left: 30px;
+}
+
+#body {
+  font-family: "Calibri-dw", sans-serif;
+}
+
+#setupForm .uploadField {
+  width: 400px !important;
+  margin-right: 10px;
+  float: left !important;
+}
+
+#sidebar {
+  float: right;
+  color: #ffffff;
+}
+
+#sidebar-username, #sidebar-password {
+  width: 110%;
+  margin-left: .5em;
+}
+
+.articleDOI, .tocDOI {
+  background: url(http://jurnalscientia.org/public/site/images/verawati/icon-doi.png) 1px 2px no-repeat rgba(0, 0, 0, 0);
+}
+
+.tocAuthors {
+  background: url(https://obsesi.or.id/public/author.png) 1px 2px no-repeat rgba(0, 0, 0, 0);
+  font-style: italic;
+  padding-bottom: 5px;
+}
+
+table.tocArticle .tocGalleys {
+  width: 6em;
+}
+
+table.tocArticle .tocGalleys .file {
+  padding: .5em 1em;
+  transition: .5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: .25em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+}
+
+table.tocArticle .tocGalleys .file:hover {
+  color: black;
+  transition: .5s ease-in-out;
+}
+
+.tocPages {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 10px;
+}
+
+.tocGalleys, .tocPages {
+  padding: 10px 10px;
+}
+
+#content #articleAbstract div {
+  font-size: 1.1em;
+  text-align: justify;
+  line-height: 2em;
+}
+
+#articleFullText a {
+  background-color: #007bff;
+  border: 2px solid #007bff;
+  padding: .5em 1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bolder;
+}
+
+#articleFullText a:hover {
+  border: 2px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  transition: .5s ease-in-out;
+}
+
+#pageFooter {
+  background-image: linear-gradient(to bottom, rgb(25, 66, 101), #15384f);
+  color: white;
+}
+
+#pageFooter .footer-layout {
+  display: flex;
+  padding: 2% 1.9%;
+  margin: .2em .2em;
+}
+
+#pageFooter .footer-layout .footer-title {
+  display: inline-block;
+  font-size: 1.3em !important;
+  font-weight: bolder;
+  margin-bottom: .6em;
+  margin-right: .2em;
+  border-bottom: 2px solid #ff9b00ed;
+}
+
+#pageFooter .footer-layout .useful-links,
+#pageFooter .footer-layout .our-partner,
+#pageFooter .footer-layout .rmsi,
+#pageFooter .footer-layout .contact-us {
+  margin-right: 2.2em;
+}
+
+#pageFooter .footer-layout .footer-content .list a {
+  display: inline-block;
+  color: white;
+  margin: .3em .2em;
+  transition: .1s ease-in-out;
+}
+
+#pageFooter .footer-layout .footer-content .list .email:hover {
+  background-color: unset;
+  padding: unset;
+  transform: unset;
+}
+
+#pageFooter .footer-layout .footer-content .list a:hover {
+  background-color: #ff9b00ed;
+  padding: .2em .3em;
+  transform: scale(1.1);
+  border-radius: 10px;
+  transition: transform .1s ease-in-out;
+}
+
+#pageFooter .footer-layout .footer-content img {
+  margin-bottom: 1em;
+}
+
+#pageFooter .footer-layout .footer-content .about {
+  line-height: 1.5em;
+}
+
+/* Start Starting the Submission */
+
+#content form #copyrightNotice h3,
+#content form #privacyStatement h3 {
+  font-size: 1.9em;
+  background-image: unset !important;
+  color: unset !important;
+  padding: unset;
+  margin-top: 1px;
+}
+
+#content form #privacyStatement h3 {
+  margin-top: -50px;
+}
+
+#content form #copyrightNotice .WordSection1 {
+  margin-top: -90px;
+  box-shadow: unset !important;
+  border-radius: unset !important;
+  overflow: unset !important;
+  background-color: unset !important;
+  border-radius: unset !important;
+  margin-left: unset !important;
+  margin-bottom: 2em;
+}
+
+#content form #copyrightNotice .WordSection2 {
+  margin-top: -60px;
+  margin-left: -5px;
+}
+
+#content form #copyrightNotice .WordSection1:before {
+  background: unset;
+}
+
+#content form #checklist {
+  margin-bottom: 1.5em;
+}
+
+#content form #privacyStatement {
+  margin-bottom: 1.5em;
+}
+
+/* End Starting the Submission */

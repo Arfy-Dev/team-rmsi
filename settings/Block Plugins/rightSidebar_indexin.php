@@ -3,9 +3,9 @@
     <a class="google-scholar" href="https://s.id/1Df6S" target="_blank"> <img
             src="https://raw.githubusercontent.com/Arfy-Dev/team-rmsi/main/asset/scholar.jpg" alt="Google Scholar"
             width="180" height="70" /> </a>
-    <a class="sinta" href="https://s.id/1Df3c" target="_blank"> <img
+    <!-- <a class="sinta" href="https://s.id/1Df3c" target="_blank"> <img
             src="https://raw.githubusercontent.com/Arfy-Dev/team-rmsi/main/asset/sinta-s5.png" alt="Sinta" width="180"
-            height="70" /> </a>
+            height="70" /> </a> -->
     <a class="garuda" href="https://garuda.kemdikbud.go.id/journal/view/8535" target="_blank"> <img
             src="https://raw.githubusercontent.com/Arfy-Dev/team-rmsi/main/asset/garuda.png" alt="Garuda" width="180"
             height="50" /> </a>
