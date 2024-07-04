@@ -426,7 +426,7 @@ a:hover {
 
 #content #displayMembership .member::before,
 #content #contact div::before,
-#content #group ol.editorialTeam .member::before {
+#content #group ol.editorialTeam .member::before{
   content: '';
   display: block;
   width: 100%;
