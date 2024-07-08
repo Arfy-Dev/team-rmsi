@@ -291,7 +291,7 @@ a:hover {
 #container {
   min-width: 730px !important;
   text-align: center;
-  background-image: url(https://s.id/1Cw9f);
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/y-so-serious-white.png);
 }
 
 #header h1 {
@@ -426,7 +426,7 @@ a:hover {
 
 #content #displayMembership .member::before,
 #content #contact div::before,
-#content #group ol.editorialTeam .member::before{
+#content #group ol.editorialTeam .member::before {
   content: '';
   display: block;
   width: 100%;
@@ -2278,11 +2278,11 @@ a:hover {
   transition: .2s ease-in-out;
 }
 
-#container {
+/* #container {
   min-width: 730px !important;
   text-align: center;
-  background-image: url(https://s.id/1Cw9f);
-}
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/y-so-serious-white.png);
+} */
 
 #header h1 {
   color: #111;
